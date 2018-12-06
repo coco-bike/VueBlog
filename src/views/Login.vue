@@ -27,7 +27,9 @@ export default {
             that.$store.commit("saveToken","");//清掉 token
             this.$refs.loginForm.validate(valid=>{
                 if(valid){
+                    debugger
                     this.$api.get("Login/Token",{name:that.user.name,password:that.user.password},
+                    
                     r=>{
                         if(r.data.success){
                             var token = r.data.token;

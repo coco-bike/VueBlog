@@ -1,19 +1,14 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <div>
-      <p>
-        If Element is successfully added to this project, you'll see an
-        <code v-text="'<el-button>'"></code>
-        below
-      </p>
-      <el-button>el-button</el-button>
+    <div class="sbk-title">
+      宋必可的博客系统
     </div>
     <Login></Login>
   </div>
 </template>
 
 <script>
+
 import Login from './views/Login.vue'
 
 export default {
@@ -32,5 +27,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.sbk-title{
+  font-size: 30px;
+  padding: 15px;
 }
 </style>
