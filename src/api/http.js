@@ -88,12 +88,12 @@ function apiAxios(method, url, params, success) {
         success(res.data);
       }
     })
-    .catch(function (err) {
-      let res = err.response
-      if (err) {
-        window.alert(`api error, HTTP CODE: ` + res.status);
-      }
-    })
+    // .catch(function (err) {
+    //   let res = err.response
+    //   if (err) {
+    //     window.alert(`api error, HTTP CODE: ` + res.status);
+    //   }
+    // })
 }
 
 // 返回在vue模板中的调用接口
