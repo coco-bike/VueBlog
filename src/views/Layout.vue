@@ -4,8 +4,18 @@
       <!-- <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
         <el-radio-button :label="false">展开</el-radio-button>
         <el-radio-button :label="true">收起</el-radio-button>
-      </el-radio-group> -->
-      <el-button class="sbk-Layout-width" type="primary" v-model="isCollapse" icon="el-icon-menu" @click="changeIsCollapse"></el-button>
+      </el-radio-group>-->
+      <div class="sbk-layout-icontitle">
+        <img src="../files/image/blog.png" alt="博客图片" class="sbk-layout-img">
+        <span class="sbk-layout-menu" v-show="!isCollapse">菜单</span>
+      </div>
+      <el-button
+        class="sbk-Layout-width"
+        type="primary"
+        v-model="isCollapse"
+        icon="el-icon-menu"
+        @click="changeIsCollapse"
+      ></el-button>
       <el-menu
         default-active="1-4-1"
         class="el-menu-vertical-demo"
@@ -47,13 +57,32 @@
     </el-aside>
     <el-container>
       <el-header>
-        <h3>后台管理系统</h3>
+        <el-row :gutter="20">
+          <el-col :span="20">
+            <span class="sbk-layout-font">后台管理系统</span>
+          </el-col>
+          <el-col :span="4" class="sbk-layout-login">
+            <el-dropdown>
+              <span class="el-dropdown-link">
+                下拉菜单
+                <i class="el-icon-arrow-down el-icon--right"></i>
+              </span>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item>黄金糕</el-dropdown-item>
+                <el-dropdown-item>狮子头</el-dropdown-item>
+                <el-dropdown-item>螺蛳粉</el-dropdown-item>
+                <el-dropdown-item>双皮奶</el-dropdown-item>
+                <el-dropdown-item>蚵仔煎</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+          </el-col>
+        </el-row>
       </el-header>
       <el-main>
         <slot></slot>
       </el-main>
       <el-footer>
-        <h3>©Copyright 2018 songbike版权所有 | 联系电话：18251935175</h3>
+        <span>©Copyright 2018 songbike版权所有 | 联系电话：18251935175</span>
       </el-footer>
     </el-container>
   </el-container>
@@ -73,8 +102,8 @@ export default {
     handleClose(key, keyPath) {
       console.log(key, keyPath);
     },
-    changeIsCollapse:function(){
-        this.isCollapse=!this.isCollapse;
+    changeIsCollapse: function() {
+      this.isCollapse = !this.isCollapse;
     }
   }
 };
@@ -85,7 +114,6 @@ export default {
 .el-footer {
   background-color: #b3c0d1;
   color: #333;
-  text-align: center;
   line-height: 60px;
 }
 
@@ -93,14 +121,13 @@ export default {
   background-color: #d3dce6;
   color: #333;
   text-align: center;
-  padding-top: 60px;
 }
 
 .el-main {
+  height: auto;
   background-color: #e9eef3;
   color: #333;
   text-align: center;
-  line-height: 735px;
 }
 
 body > .el-container {
@@ -119,8 +146,41 @@ body > .el-container {
   width: 200px;
   min-height: 400px;
 }
-.sbk-Layout-width{
-    margin: 0,15px;
-    width: 100%;
+.sbk-Layout-width {
+  margin: 0, 15px;
+  width: 100%;
+}
+.sbk-login-height > .el-container {
+  height: 100%;
+}
+.sbk-layout-icontitle {
+  height: 40px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.sbk-layout-img {
+  width: 40px;
+}
+.sbk-layout-menu {
+  display: inline-block;
+  width: 40px;
+}
+.sbk-layout-font {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+}
+.el-footer > span {
+  font-size: 13px;
+}
+.el-footer {
+  text-align: center;
+}
+.sbk-layout-login {
+  text-align: center;
 }
 </style>

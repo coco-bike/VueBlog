@@ -45,7 +45,6 @@ export default {
                   duration: 3000
                 });
                 console.log(that.$store.state.token);
-                debugger
                 this.loginIsOk("true");
               } else {
                 this.$message({

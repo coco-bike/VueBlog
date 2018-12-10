@@ -14,7 +14,7 @@
         <Register v-show="!loginState" v-on:registerEvent="listenToRegisterEvent"></Register>
       </transition>
     </div>
-    <div v-show="loginOk">
+    <div v-show="loginOk" class="sbk-login-height">
       <Home></Home>
     </div>
   </div>
@@ -51,7 +51,6 @@ export default {
       }
     },
     loginEvent: function(data) {
-      debugger
       if (data == "true") {
         this.loginOk = true;
       } else {
@@ -63,22 +62,37 @@ export default {
 </script>
 
 <style>
-body {
+html,body {
   margin: 0px;
-  height: 937px;
+  height: 100%;
+  color: #606266;
 }
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   height: 100%;
 }
 .sbk-login-background {
-  background: url(files/image/531e9dffbabcb.jpg) no-repeat;
+  position:fixed;
+  top: 0;
+  left: 0;
+  width:100%;
+  height:100%;
+  min-width: 1000px;
+  zoom: 1;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;
+  background-position: center 0;
+  background: url(files/image/531e9dffbabcb.jpg);
 }
 .sbk-login-title {
+  text-align: center;
+  margin-top: 200px;
   font-size: 30px;
   color: white;
   padding: 15px;
@@ -90,5 +104,8 @@ body {
   padding: 15px;
   background-color: white;
   border-radius: 15px;
+}
+.sbk-login-height{
+  height: 100%;
 }
 </style>
