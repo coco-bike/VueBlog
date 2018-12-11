@@ -1,15 +1,17 @@
 <template>
   <Layout>
-    <h3>你好啊</h3>
+   <HomeContent></HomeContent>
   </Layout>
 </template>
 
 <script>
 import Layout from "./Layout";
+import HomeContent from "./HomeContent"
 
 export default {
   components: {
-    Layout
+    Layout,
+    HomeContent
   }
 };
 </script>

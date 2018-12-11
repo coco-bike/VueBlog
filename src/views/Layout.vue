@@ -1,6 +1,6 @@
 <template>
   <el-container>
-    <el-aside width="auto">
+    <el-aside width="auto" class="sbk-layout-y">
       <!-- <el-radio-group v-model="isCollapse" style="margin-bottom: 20px;">
         <el-radio-button :label="false">展开</el-radio-button>
         <el-radio-button :label="true">收起</el-radio-button>
@@ -29,26 +29,45 @@
             <span slot="title">导航一</span>
           </template>
           <el-menu-item-group>
-            <span slot="title">分组一</span>
+            <!-- <span slot="title">分组一</span> -->
             <el-menu-item index="1-1">选项1</el-menu-item>
             <el-menu-item index="1-2">选项2</el-menu-item>
-          </el-menu-item-group>
-          <el-menu-item-group title="分组2">
             <el-menu-item index="1-3">选项3</el-menu-item>
+            <el-menu-item index="1-4">选项4</el-menu-item>
+            <el-menu-item index="1-5">选项5</el-menu-item>
+            <el-menu-item index="1-6">选项6</el-menu-item>
           </el-menu-item-group>
-          <el-submenu index="1-4">
-            <span slot="title">选项4</span>
-            <el-menu-item index="1-4-1">选项1</el-menu-item>
-          </el-submenu>
         </el-submenu>
-        <el-menu-item index="2">
-          <i class="el-icon-menu"></i>
-          <span slot="title">导航二</span>
-        </el-menu-item>
-        <el-menu-item index="3" disabled>
-          <i class="el-icon-document"></i>
-          <span slot="title">导航三</span>
-        </el-menu-item>
+        <el-submenu index="2">
+          <template slot="title">
+            <i class="el-icon-menu"></i>
+            <span slot="title">导航二</span>
+          </template>
+          <el-menu-item-group>
+            <!-- <span slot="title">分组一</span> -->
+            <el-menu-item index="2-1">选项1</el-menu-item>
+            <el-menu-item index="2-2">选项2</el-menu-item>
+            <el-menu-item index="2-3">选项3</el-menu-item>
+            <el-menu-item index="2-4">选项4</el-menu-item>
+            <el-menu-item index="2-5">选项5</el-menu-item>
+            <el-menu-item index="2-6">选项6</el-menu-item>
+          </el-menu-item-group>
+        </el-submenu>
+        <el-submenu index="3">
+          <template slot="title">
+            <i class="el-icon-document"></i>
+            <span slot="title">导航三</span>
+          </template>
+          <el-menu-item-group>
+            <!-- <span slot="title">分组一</span> -->
+            <el-menu-item index="3-1">选项1</el-menu-item>
+            <el-menu-item index="3-2">选项2</el-menu-item>
+            <el-menu-item index="3-3">选项3</el-menu-item>
+            <el-menu-item index="3-4">选项4</el-menu-item>
+            <el-menu-item index="3-5">选项5</el-menu-item>
+            <el-menu-item index="3-6">选项6</el-menu-item>
+          </el-menu-item-group>
+        </el-submenu>
         <el-menu-item index="4">
           <i class="el-icon-setting"></i>
           <span slot="title">导航四</span>
@@ -57,22 +76,20 @@
     </el-aside>
     <el-container>
       <el-header>
-        <el-row :gutter="20">
-          <el-col :span="20">
+        <el-row :gutter="20" class="sbk-layout-row">
+          <el-col :span="24">
             <span class="sbk-layout-font">后台管理系统</span>
           </el-col>
           <el-col :span="4" class="sbk-layout-login">
             <el-dropdown>
               <span class="el-dropdown-link">
-                下拉菜单
+                Admin
                 <i class="el-icon-arrow-down el-icon--right"></i>
               </span>
               <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item>黄金糕</el-dropdown-item>
-                <el-dropdown-item>狮子头</el-dropdown-item>
-                <el-dropdown-item>螺蛳粉</el-dropdown-item>
-                <el-dropdown-item>双皮奶</el-dropdown-item>
-                <el-dropdown-item>蚵仔煎</el-dropdown-item>
+                <el-dropdown-item>个人信息</el-dropdown-item>
+                <el-dropdown-item>切换账号</el-dropdown-item>
+                <el-dropdown-item>退出</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
           </el-col>
@@ -180,7 +197,20 @@ body > .el-container {
 .el-footer {
   text-align: center;
 }
+.sbk-layout-row{
+  position: relative;
+}
 .sbk-layout-login {
+  position: absolute;
+  right: 0;
   text-align: center;
+  z-index: 1;
+}
+.sbk-layout-y {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.sbk-layout-y::-webkit-scrollbar {
+  display: none;
 }
 </style>
