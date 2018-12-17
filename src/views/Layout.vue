@@ -30,9 +30,15 @@
           </template>
           <el-menu-item-group>
             <!-- <span slot="title">分组一</span> -->
-            <el-menu-item index="1-1">选项1</el-menu-item>
-            <el-menu-item index="1-2">选项2</el-menu-item>
-            <el-menu-item index="1-3">选项3</el-menu-item>
+            <el-menu-item index="1-1">
+              <router-link to="homeContent">展示页</router-link>
+            </el-menu-item>
+            <el-menu-item index="1-2">
+              <router-link to="articleList">文章列表</router-link>
+            </el-menu-item>
+            <el-menu-item index="1-3">
+              <router-link to="vueQuillEditor">文章列表</router-link>
+            </el-menu-item>
             <el-menu-item index="1-4">选项4</el-menu-item>
             <el-menu-item index="1-5">选项5</el-menu-item>
             <el-menu-item index="1-6">选项6</el-menu-item>
@@ -96,7 +102,9 @@
         </el-row>
       </el-header>
       <el-main>
-        <slot></slot>
+        <transition name="el-zoom-in-center">
+          <router-view></router-view>
+        </transition>
       </el-main>
       <el-footer>
         <span>©Copyright 2018 songbike版权所有 | 联系电话：18251935175</span>
@@ -106,11 +114,16 @@
 </template>
 
 <script>
+import VueQuillEditor from "./VueQuillEditor";
+
 export default {
   data() {
     return {
       isCollapse: true
     };
+  },
+  components: {
+    VueQuillEditor
   },
   methods: {
     handleOpen(key, keyPath) {
@@ -197,7 +210,7 @@ body > .el-container {
 .el-footer {
   text-align: center;
 }
-.sbk-layout-row{
+.sbk-layout-row {
   position: relative;
 }
 .sbk-layout-login {

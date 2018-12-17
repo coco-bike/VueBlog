@@ -15,7 +15,7 @@
       </transition>
     </div>
     <div v-show="loginOk" class="sbk-login-height">
-      <Home></Home>
+      <router-view></router-view>
     </div>
   </div>
 </template>
@@ -23,7 +23,6 @@
 <script>
 import Login from "./views/Login.vue";
 import Register from "./views/Register.vue";
-import Home from "./views/Home.vue";
 
 export default {
   name: "app",
@@ -35,8 +34,7 @@ export default {
   },
   components: {
     Login,
-    Register,
-    Home
+    Register
   },
   methods: {
     listenToRegister: function(data) {
@@ -57,29 +55,38 @@ export default {
         this.loginOk = false;
       }
     }
+  },
+  watch: {
+    loginOk: function(newvalue, oldvalue) {
+      if (newvalue) {
+        this.$router.push("/layout");
+      }
+    }
   }
 };
 </script>
 
 <style>
-html,body {
+html,
+body {
   margin: 0px;
   height: 100%;
   color: #606266;
 }
 #app {
-  font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
   height: 100%;
 }
 .sbk-login-background {
-  position:fixed;
+  position: fixed;
   top: 0;
   left: 0;
-  width:100%;
-  height:100%;
+  width: 100%;
+  height: 100%;
   min-width: 1000px;
   zoom: 1;
   background-color: #fff;
@@ -105,7 +112,7 @@ html,body {
   background-color: white;
   border-radius: 15px;
 }
-.sbk-login-height{
+.sbk-login-height {
   height: 100%;
 }
 </style>
