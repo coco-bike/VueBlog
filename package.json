@@ -10,6 +10,8 @@
   "dependencies": {
     "axios": "^0.18.0",
     "element-ui": "^2.4.11",
+    "quill-image-drop-module": "^1.0.3",
+    "quill-image-resize-module": "^3.0.0",
     "vue": "^2.5.17",
     "vue-quill-editor": "^3.0.6",
     "vue-router": "^3.0.1",

@@ -4,7 +4,7 @@ var root = `http://localhost:54891/api`;
 // var root2 = "http://123.206.33.109:8081/api/";//没有代理的服务器api地址
 //var root = "/api"; //配置 proxy 代理的api地址，也可以写成http://localhost:6688/apb/api
 // 引用axios
-var axios = require('axios')
+import axios from 'axios';
 // 自定义判断元素类型JS
 function toType(obj) {
   return ({}).toString.call(obj).match(/\s([a-zA-Z]+)/)[1].toLowerCase();

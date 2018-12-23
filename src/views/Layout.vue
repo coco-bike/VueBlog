@@ -37,7 +37,7 @@
               <router-link to="articleList">文章列表</router-link>
             </el-menu-item>
             <el-menu-item index="1-3">
-              <router-link to="vueQuillEditor">文章列表</router-link>
+              <router-link to="vueQuillEditor">文章上传</router-link>
             </el-menu-item>
             <el-menu-item index="1-4">选项4</el-menu-item>
             <el-menu-item index="1-5">选项5</el-menu-item>

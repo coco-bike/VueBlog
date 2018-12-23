@@ -2,12 +2,8 @@
   <div>
     <el-row :gutter="20" justify="left" align="center">
       <el-col :span="6">
-        <label>姓名：</label>
-        <el-input placeholder="请输入内容" class="sbk-articlelist-width"></el-input>
-      </el-col>
-      <el-col :span="6">
-        <label>姓名：</label>
-        <el-input placeholder="请输入内容" class="sbk-articlelist-width"></el-input>
+        <label>标题：</label>
+        <el-input placeholder="请输入内容" v-model="titleText" class="sbk-articlelist-width"></el-input>
       </el-col>
       <el-col :span="6">
         <label>姓名：</label>
@@ -21,22 +17,26 @@
         </el-select>
       </el-col>
       <el-col :span="6">
-        <div class="grid-content bg-purple"></div>
+         <el-button v-on:click="loadTableData()" icon="el-icon-search" circle></el-button>
       </el-col>
     </el-row>
     <el-table :data="tableData" style="width: 100%">
-      <el-table-column prop="date" label="日期" width="180"></el-table-column>
-      <el-table-column prop="name" label="姓名" width="180"></el-table-column>
-      <el-table-column prop="address" label="地址"></el-table-column>
+      <el-table-column prop="btitle" label="标题" width="180"></el-table-column>
+      <el-table-column prop="bcategory" label="类别" width="180"></el-table-column>
+      <el-table-column prop="btraffic" label="访问量"></el-table-column>
+      <el-table-column prop="bcommentNum" label="评论数量"></el-table-column>
+      <el-table-column prop="bUpdateTime" label="修改时间"></el-table-column>
+      <el-table-column prop="bCreateTime" label="创建时间"></el-table-column>
+      <el-table-column prop="bRemark" label="备注"></el-table-column>
     </el-table>
     <el-pagination
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
-      :current-page="currentPage4"
-      :page-sizes="[100, 200, 300, 400]"
-      :page-size="100"
+      :current-page="currentPage"
+      :page-sizes="[1, 5, 10, 20]"
+      :page-size="pageSize"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="400"
+      :total="totalCount"
     ></el-pagination>
   </div>
 </template>
@@ -45,77 +45,72 @@
 export default {
   data() {
     return {
-      tableData: [
-        {
-          date: "2016-05-02",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1518 弄"
-        },
-        {
-          date: "2016-05-04",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1517 弄"
-        },
-        {
-          date: "2016-05-01",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1519 弄"
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-          address: "上海市普陀区金沙江路 1516 弄"
-        }
-      ],
+      tableData: [],
       options: [
         {
-          value: "选项1",
-          label: "黄金糕"
+          value: "技术博文",
+          label: "技术博文"
         },
         {
-          value: "选项2",
-          label: "双皮奶"
-        },
-        {
-          value: "选项3",
-          label: "蚵仔煎"
-        },
-        {
-          value: "选项4",
-          label: "龙须面"
-        },
-        {
-          value: "选项5",
-          label: "北京烤鸭"
+          value: "动漫二次元",
+          label: "动漫二次元"
         }
       ],
       value8: "",
-      currentPage4:5
+      currentPage: 1,
+      totalCount: 1,
+      pageSize: 1,
+      titleText:""
     };
   },
   methods: {
     handleSizeChange(val) {
-      console.log(`每页 ${val} 条`);
+     this.pageSize=val;
+     this.loadTableData();
     },
     handleCurrentChange(val) {
-      console.log(`当前页: ${val}`);
+      this.currentPage=val;
+     this.loadTableData();
+    },
+    loadTableData() {
+      this.$api.get(
+        "Blog/GetBlogs",
+        { currentPage: this.currentPage, pageSize: this.pageSize,title: this.titleText, bcategory: this.value8},
+        r => {
+          if (r.data.success) {
+            this.tableData = r.data.data;
+            this.totalCount = r.data.pageCount;
+            this.currentPage = r.data.page;
+          } 
+          else 
+          {
+            console.log("登录失败");
+          }
+        }
+      );
     }
-  }
+  },
+  mounted: function(){
+    this.loadTableData();
+   }
+  // watch:function(){
+  //   bUpdateTime:
+  // }
 };
 </script>
 
 <style>
 .el-row {
   margin-bottom: 20px;
-  &:last-child {
+}
+.el-row:last-child {
     margin-bottom: 0;
   }
-}
 .row-bg {
   padding: 10px 0;
   background-color: #f9fafc;
 }
 .sbk-articlelist-width {
-  width: 60%!important;
+  width: 60% !important;
 }
 </style>
