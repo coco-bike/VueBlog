@@ -7,8 +7,10 @@
 import { Quill } from "vue-quill-editor";
 import { ImageDrop } from "quill-image-drop-module";
 import ImageResize from "quill-image-resize-module";
+import { container, ImageExtend, QuillWatch } from "quill-image-extend-module";
 Quill.register("modules/imageDrop", ImageDrop);
 Quill.register("modules/imageResize", ImageResize);
+Quill.register("modules/ImageExtend", ImageExtend);
 
 export default {
   data() {
@@ -16,12 +18,25 @@ export default {
       content: `<p><strong><em>Or drag/paste an image here.</em></strong></p>`,
       editorOption: {
         modules: {
-          toolbar: [
-            [{ size: ["small", false, "large"] }],
-            ["bold", "italic"],
-            [{ list: "ordered" }, { list: "bullet" }],
-            ["link", "image"]
-          ],
+          ImageExtend: {
+            name: "img",
+            size: 2, // 单位为M, 1M = 1024KB
+            action: "http://localhost:54891/api/Blog/UploadPhotosAsync",
+            headers: xhr => {
+               return window.localStorage.Token;
+            },
+            response: res => {
+              return ("http://localhost:54891/"+res.data.data);
+            }
+          },
+          toolbar: {
+            container: container,
+            handlers: {
+              image: function() {
+                QuillWatch.emit(this.quill.id);
+              }
+            }
+          },
           history: {
             delay: 1000,
             maxStack: 50,
