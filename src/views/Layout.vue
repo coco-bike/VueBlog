@@ -101,7 +101,7 @@
           </el-col>
         </el-row>
       </el-header>
-      <el-main>
+      <el-main class="sbk-Layout-minwidth">
         <transition name="el-zoom-in-center">
           <router-view></router-view>
         </transition>
@@ -225,5 +225,8 @@ body > .el-container {
 }
 .sbk-layout-y::-webkit-scrollbar {
   display: none;
+}
+.sbk-Layout-minwidth{
+  min-width: 1400px;
 }
 </style>

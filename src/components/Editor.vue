@@ -26,7 +26,7 @@ export default {
                return window.localStorage.Token;
             },
             response: res => {
-              return ("http://localhost:54891/"+res.data.data);
+              return ("http://localhost:54891/"+"api/Blog/GetImage?name="+res.data.data+"&width=0");
             }
           },
           toolbar: {
