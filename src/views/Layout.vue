@@ -103,7 +103,7 @@
       </el-header>
       <el-main class="sbk-Layout-minwidth">
         <transition name="el-zoom-in-center">
-          <router-view></router-view>
+          <router-view v-on:contentChange="contentEvent"></router-view>
         </transition>
       </el-main>
       <el-footer>
@@ -134,6 +134,9 @@ export default {
     },
     changeIsCollapse: function() {
       this.isCollapse = !this.isCollapse;
+    },
+    contentEvent:function(data){
+      console.log(data);
     }
   }
 };
