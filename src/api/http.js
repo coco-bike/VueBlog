@@ -33,6 +33,21 @@ axios.interceptors.request.use(
       // 判断是否存在token，如果存在的话，则每个http header都加上token
       config.headers.Authorization = window.localStorage.Token;
     }
+
+    if(config.method === 'post') {
+      console.log(config.method);
+      config.headers={
+        'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'
+      }
+      config.transformRequest = [function (data) {
+        // Do whatever you want to transform the data
+        let newData = ''
+        for (let k in data) {
+        newData += encodeURIComponent(k) + '=' + encodeURIComponent(data[k]) + '&'
+        }
+        return newData
+        }];
+  }
     return config;
   },
   err => {
@@ -86,6 +101,14 @@ function apiAxios(method, url, params, success) {
     .then(function (res) {
       if (res.data.data.success === true) {
         success(res.data);
+      }
+    })
+    .catch(error => {
+      if (!error.response) {
+          // network error
+          window.alert('Error: Network Error');
+      } else {
+        window.alert(error.response.data.message);
       }
     })
     // .catch(function (err) {
